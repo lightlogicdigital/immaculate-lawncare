@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — mirrored from the Paper file "Immaculate Lawncare — Website".
+ * Mood: signage / truck-door decal. Immaculate red is the single brand color;
+ * the lawn photography supplies the green.
+ */
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #171512;
+  --color-muted: #57534e;
+  --color-surface: #f4f4f2;
+  --color-line: #e4e3e0;
+  --color-brand: #d62b1f;
+  --color-brand-hover: #b51f14;
+  --color-brand-bright: #ff6253;
+  --color-star: #f2a900;
+
+  --radius-card: 24px;
+  --radius-panel: 36px;
+
+  --tracking-display: -0.04em;
+  --tracking-label: 0.14em;
+}
+
+@theme inline {
+  --font-display: var(--font-libre-franklin), "Franklin Gothic Medium", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-yellowtail), cursive;
+  --font-condensed: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 40px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-site {
+      padding-inline: 64px;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-brand);
+  }
+
+  .display-xl {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: var(--tracking-display);
+    font-size: clamp(2.875rem, 1.6rem + 4.6vw, 5.25rem);
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  .display-lg {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: var(--tracking-display);
+    font-size: clamp(2.25rem, 1.5rem + 2.6vw, 3.5rem);
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+
+  .display-md {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    font-size: clamp(1.5rem, 1.25rem + 0.8vw, 1.75rem);
+    line-height: 1.15;
+  }
+}
