@@ -3,6 +3,7 @@ import { Barlow_Condensed, Figtree, Libre_Franklin, Yellowtail } from "next/font
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileActionBar } from "@/components/MobileActionBar";
+import { SameRouteScroll } from "@/components/SameRouteScroll";
 import { cities, services, site } from "@/lib/site";
 import "./globals.css";
 
@@ -84,6 +85,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      // Keeps smooth scrolling for in-page section links, but tells Next to jump
+      // straight to the top when it opens a new page instead of animating there.
+      data-scroll-behavior="smooth"
       className={`${libreFranklin.variable} ${figtree.variable} ${yellowtail.variable} ${barlowCondensed.variable}`}
     >
       <body className="flex min-h-dvh flex-col pb-[84px] lg:pb-0">
@@ -99,6 +103,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <MobileActionBar />
+        <SameRouteScroll />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
