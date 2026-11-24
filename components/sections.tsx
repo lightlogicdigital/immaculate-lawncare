@@ -273,7 +273,7 @@ export function AboutTeaser() {
 
 export function RecentWork() {
   return (
-    <section id="work" aria-labelledby="work-title" className="scroll-mt-24 bg-surface">
+    <section id="work" aria-labelledby="work-title" className="bg-surface">
       <div className="container-site flex flex-col gap-14 py-20 lg:pt-28 lg:pb-[120px]">
         <SectionHeader
           id="work-title"
@@ -323,7 +323,7 @@ function Initial({ name, tone }: { name: string; tone: "brand" | "light" }) {
 export function Reviews() {
   const [featured, second, third] = reviews;
   return (
-    <section id="reviews" aria-labelledby="reviews-title" className="container-site scroll-mt-24 py-20 lg:py-[120px]">
+    <section id="reviews" aria-labelledby="reviews-title" className="container-site py-20 lg:py-[120px]">
       <div className="flex flex-col gap-14">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div className="flex max-w-[760px] flex-col gap-[18px]">

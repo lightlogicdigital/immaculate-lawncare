@@ -34,6 +34,19 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /*
+     * Height of the sticky header (components/Header.tsx: h-[76px] lg:h-[88px]
+     * plus its 1px bottom border). Section links land with the section's top
+     * edge right under the header, and Next uses the same value to decide when
+     * a new page needs scrolling to the top. Update both together.
+     */
+    scroll-padding-top: 77px;
+  }
+
+  @media (min-width: 64rem) {
+    html {
+      scroll-padding-top: 89px;
+    }
   }
 
   body {
