@@ -59,7 +59,7 @@ function Hero() {
         {/* Phones: the floating chips don't fit, so show the proof inline instead. */}
         <p className="flex items-center gap-2 text-sm font-semibold text-ink md:hidden">
           <span className="font-extrabold">{site.clientsServed}</span>
-          <span className="text-muted">local clients</span>
+          <span className="text-muted">happy clients</span>
         </p>
       </div>
 
@@ -104,7 +104,7 @@ function Hero() {
             <span className="font-display text-[22px] leading-none font-extrabold tracking-[-0.02em] text-white">
               {site.clientsServed}
             </span>
-            <span className="text-sm font-semibold text-white/80">clients</span>
+            <span className="text-sm font-semibold text-white/80">happy clients</span>
           </Link>
         </div>
       </div>
