@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cities, faqs, gallery, images, reviews, services, site } from "@/lib/site";
+import { cities, collages, faqs, gallery, images, reviews, services, site, type Collage } from "@/lib/site";
 import { ScriptPatch } from "./Brand";
 import { ButtonLink, TextLink } from "./Button";
 import {
@@ -213,25 +213,43 @@ export function Stats() {
   );
 }
 
-export function PhotoCollage() {
+/**
+ * `smallInset` keeps the inset clear of faces in the lower left of the main photo.
+ * `eager` loads the main photo right away when the collage sits above the fold.
+ */
+export function PhotoCollage({
+  photos = collages.home,
+  smallInset = false,
+  eager = false,
+}: {
+  photos?: Collage;
+  smallInset?: boolean;
+  eager?: boolean;
+}) {
+  const { main, inset } = photos;
   return (
     <div className="relative mx-auto aspect-[560/620] w-full max-w-[560px] shrink-0">
       <div className="absolute top-0 right-0 h-[84%] w-[72%] overflow-hidden rounded-panel">
         <Image
-          src={images.billy}
-          alt="Billy James, owner of Immaculate Lawncare, smiling on a job site"
+          src={main.src}
+          alt={main.alt}
           fill
           sizes="(min-width: 1024px) 400px, 72vw"
+          loading={eager ? "eager" : undefined}
           className="object-cover"
+          style={{ objectPosition: main.position }}
         />
       </div>
-      <div className="absolute bottom-0 left-0 h-[52%] w-[45%] -rotate-4 overflow-hidden rounded-card border-[6px] border-white shadow-[0_18px_40px_rgba(23,21,18,0.14)] md:border-8">
+      <div
+        className={`absolute bottom-0 left-0 ${smallInset ? "h-[42%] w-[38%]" : "h-[52%] w-[45%]"} -rotate-4 overflow-hidden rounded-card border-[6px] border-white shadow-[0_18px_40px_rgba(23,21,18,0.14)] md:border-8`}
+      >
         <Image
-          src={images.curvedBed}
-          alt="Freshly mulched bed with ornamental grasses beside a striped lawn"
+          src={inset.src}
+          alt={inset.alt}
           fill
           sizes="(min-width: 1024px) 250px, 45vw"
           className="object-cover"
+          style={{ objectPosition: inset.position }}
         />
       </div>
       <ScriptPatch className="absolute top-[3%] left-[1%] w-[36%] -rotate-8 drop-shadow-[0_14px_24px_rgba(23,21,18,0.22)]" />

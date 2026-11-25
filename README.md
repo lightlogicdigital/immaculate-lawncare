@@ -67,8 +67,10 @@ site it shows the visitor a “please call” message instead of silently droppi
 - FAQ answers 2–6 in `lib/site.ts` were drafted from statements elsewhere on the old site.
 - Every service and gallery photo is a real job photo from Billy. On each service in `lib/site.ts`, `work`
   feeds the page's "Recent work" grid (first photo featured; 6 or 9 photos fill the grid evenly) and
-  `beforeAfter` adds a before/after pair; `position` tunes each crop. `job-mulch-curb`, `-curved-edge` and
-  `crew-mulch-trailer` are ~810×443 crops of Facebook screenshots, so ask for originals if they're used large.
+  `beforeAfter` adds a before/after pair; `position` tunes each crop. `job-mulch-curb` and `crew-mulch-trailer`
+  are ~810×443 crops of Facebook screenshots, so ask for originals if they're used large.
+- The About page photo (`billy-team-selfie.jpg`, set in `collages.about`) shows Billy with a teammate. Confirm
+  who she is and that she's happy to be on the site; the alt text calls her "a teammate".
 - Job photos show customers' homes. New ones must be re-saved through an image tool (several of Billy's
   phone photos carried GPS coordinates, and some have the street address stamped on them), with house
   numbers, address stamps, security-company signs and personal flags cropped or patched out.

@@ -10,7 +10,9 @@ import curvedBed from "@/assets/images/job-curved-bed.jpg";
 import lawnStriped from "@/assets/images/job-lawn-striped-garage.jpg";
 import crewMulchTrailer from "@/assets/images/crew-mulch-trailer.jpg";
 import mulchCurb from "@/assets/images/job-mulch-curb.jpg";
-import mulchCurvedEdge from "@/assets/images/job-mulch-curved-edge.jpg";
+import mulchSidewalkBed from "@/assets/images/job-mulch-sidewalk-bed.jpg";
+import mulchHostaCorner from "@/assets/images/job-mulch-hosta-corner.jpg";
+import billyTeamSelfie from "@/assets/images/billy-team-selfie.jpg";
 import mulchTreeRing from "@/assets/images/job-mulch-tree-ring.jpg";
 import mulchFenceRow from "@/assets/images/job-mulch-fence-row.jpg";
 import mulchWaterfront from "@/assets/images/job-mulch-waterfront.jpg";
@@ -62,7 +64,7 @@ export const nav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
-export const images = { hero, billy, curvedBed, amber, houseCurb };
+export const images = { hero, billy, amber, houseCurb };
 
 /** Real job photos fanned across the homepage hero (Paper: "Hero D — Neighborhood Mosaic"). */
 export const heroStrip = [
@@ -76,6 +78,25 @@ export const heroStrip = [
 
 /** A real job photo. `position` is the CSS object-position used when it's cropped into a tile. */
 export type Photo = { src: StaticImageData; alt: string; position?: string };
+
+/** The large photo and the tilted inset in the owner collage. */
+export type Collage = { main: Photo; inset: Photo };
+
+export const collages = {
+  /** Homepage "Meet the owner". */
+  home: {
+    main: { src: billy, alt: "Billy James, owner of Immaculate Lawncare, smiling on a job site" },
+    inset: { src: curvedBed, alt: "Freshly mulched bed with ornamental grasses beside a striped lawn" },
+  },
+  /** About page story. */
+  about: {
+    main: {
+      src: billyTeamSelfie,
+      alt: "Billy James, owner of Immaculate Lawncare, and a teammate smiling beside a bed they just mulched",
+    },
+    inset: { src: mulchHostaCorner, alt: "Fresh mulch corner bed with hostas and an elephant ear along a wood fence" },
+  },
+} satisfies Record<string, Collage>;
 
 export type Service = {
   slug: string;
@@ -166,7 +187,7 @@ export const services: Service[] = [
     work: [
       { src: mulchWaterfront, alt: "Freshly mulched hillside beds along a stamped walkway above a waterfront dock", position: "50% 62%" },
       { src: mulchHostaCurve, alt: "Curving concrete-edged bed of hostas and shrubs, freshly mulched beside a front walk", position: "50% 62%" },
-      { src: mulchCurvedEdge, alt: "Crisp curved bed edge between fresh mulch and green lawn, with flowering shrubs" },
+      { src: mulchSidewalkBed, alt: "Fresh dark mulch in a curbed bed of nandina, pansies and path lights along a sidewalk", position: "50% 40%" },
       { src: mulchWaterfrontWalk, alt: "Fresh dark mulch on a sloped bed with path lights beside a stamped concrete walk", position: "50% 55%" },
       { src: mulchDaylilyFence, alt: "Fresh mulch bed with blooming daylilies along a weathered wood fence", position: "50% 55%" },
       { src: mulchFenceRow, alt: "Long mulched bed of young trees along a white privacy fence", position: "50% 35%" },

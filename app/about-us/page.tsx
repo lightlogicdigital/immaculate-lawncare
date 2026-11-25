@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { FinalCta, PageHero, PhotoCollage, RecentWork, Reviews, Stats } from "@/components/sections";
-import { site } from "@/lib/site";
+import { collages, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Us — Veteran-Owned Lawn Care in Hampton Roads",
@@ -35,7 +35,7 @@ export default function AboutPage() {
 
       <section aria-labelledby="story-title" className="container-site pb-20 lg:pb-32">
         <div className="flex flex-col items-center gap-14 lg:flex-row lg:gap-24">
-          <PhotoCollage />
+          <PhotoCollage photos={collages.about} smallInset eager />
           <div className="flex min-w-0 flex-1 flex-col gap-7">
             <p className="eyebrow">Our story</p>
             <h2 id="story-title" className="display-lg">
