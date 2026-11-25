@@ -198,10 +198,9 @@ export function Stats() {
   const stats = [
     { value: `${site.yearsInBusiness} yrs`, label: "Caring for local lawns" },
     { value: site.clientsServed, label: "Happy clients served" },
-    { value: `${site.rating}★`, label: "Average review rating" },
   ];
   return (
-    <dl className="grid grid-cols-3 gap-4 border-t border-line pt-8">
+    <dl className="grid grid-cols-2 gap-4 border-t border-line pt-8">
       {stats.map((s) => (
         <div key={s.label} className="flex flex-col-reverse gap-1">
           <dt className="text-sm font-medium text-muted md:text-[15px]">{s.label}</dt>
@@ -332,15 +331,6 @@ export function Reviews() {
             <h2 id="reviews-title" className="display-lg">
               Don&apos;t take our word for it. Take your neighbors&apos;.
             </h2>
-          </div>
-          <div className="flex items-center gap-[18px] lg:pb-1.5">
-            <span className="font-display text-[64px] leading-none font-extrabold tracking-[-0.045em] lg:text-[72px]">
-              {site.rating}
-            </span>
-            <span className="flex flex-col gap-1">
-              <Stars size={20} className="text-star" />
-              <span className="text-[15px] font-medium text-muted">Google &amp; Trustpilot reviews</span>
-            </span>
           </div>
         </div>
 

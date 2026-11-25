@@ -58,9 +58,8 @@ function Hero() {
 
         {/* Phones: the floating chips don't fit, so show the proof inline instead. */}
         <p className="flex items-center gap-2 text-sm font-semibold text-ink md:hidden">
-          <span className="font-extrabold">{site.rating}</span>
-          <Stars size={14} className="text-star" />
-          <span className="text-muted">· {site.clientsServed} local clients</span>
+          <span className="font-extrabold">{site.clientsServed}</span>
+          <span className="text-muted">local clients</span>
         </p>
       </div>
 
@@ -103,10 +102,9 @@ function Hero() {
             className="absolute top-[-28px] right-[240px] hidden rotate-3 items-center gap-2.5 rounded-full bg-ink px-[18px] py-3 shadow-[0_14px_34px_rgba(23,21,18,0.2)] transition-transform hover:rotate-1 md:flex"
           >
             <span className="font-display text-[22px] leading-none font-extrabold tracking-[-0.02em] text-white">
-              {site.rating}
+              {site.clientsServed}
             </span>
-            <Stars size={14} className="text-star" />
-            <span className="text-sm font-semibold text-white/80">{site.clientsServed} clients</span>
+            <span className="text-sm font-semibold text-white/80">clients</span>
           </Link>
         </div>
       </div>
