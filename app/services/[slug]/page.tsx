@@ -5,8 +5,8 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ButtonLink } from "@/components/Button";
 import { ArrowIcon, PhoneIcon } from "@/components/icons";
-import { Checklist, FinalCta, Reviews } from "@/components/sections";
-import { getService, services, site } from "@/lib/site";
+import { Checklist, FinalCta, Reviews, SectionHeader } from "@/components/sections";
+import { getService, services, site, type Service } from "@/lib/site";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -82,6 +82,7 @@ async function ServiceContent({ params }: { params: PageProps<"/services/[slug]"
               fill
               preload
               sizes="(min-width: 1024px) 46vw, 100vw"
+              style={{ objectPosition: service.imagePosition }}
               className="object-cover"
             />
           </div>
@@ -108,6 +109,10 @@ async function ServiceContent({ params }: { params: PageProps<"/services/[slug]"
         </div>
       </section>
 
+      <BeforeAfter service={service} />
+
+      <JobPhotos service={service} />
+
       <Reviews />
 
       <section aria-labelledby="other-title" className="container-site pb-20 lg:pb-28">
@@ -122,7 +127,14 @@ async function ServiceContent({ params }: { params: PageProps<"/services/[slug]"
                 className="group flex items-center gap-5 rounded-panel border-[1.5px] border-line p-4 pr-6 transition-colors hover:border-ink"
               >
                 <span className="relative size-24 shrink-0 overflow-hidden rounded-2xl md:size-28">
-                  <Image src={o.image} alt="" fill sizes="112px" className="object-cover" />
+                  <Image
+                    src={o.image}
+                    alt=""
+                    fill
+                    sizes="112px"
+                    style={{ objectPosition: o.imagePosition }}
+                    className="object-cover"
+                  />
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col gap-1.5">
                   <span className="display-md">{o.name}</span>
@@ -137,5 +149,87 @@ async function ServiceContent({ params }: { params: PageProps<"/services/[slug]"
 
       <FinalCta />
     </>
+  );
+}
+
+/** Bento grid of real job photos: the first is featured at 2×2 on desktop, full width on phones. */
+function JobPhotos({ service }: { service: Service }) {
+  const [featured, ...rest] = service.work ?? [];
+  if (!featured) return null;
+  return (
+    <section aria-labelledby="job-photos-title" className="container-site flex flex-col gap-12 pt-20 lg:gap-14 lg:pt-28">
+      <SectionHeader
+        id="job-photos-title"
+        eyebrow="Recent work"
+        title="Fresh from the job site."
+        aside={
+          <p className="text-[17px] leading-7 text-muted">
+            Real Hampton Roads properties, photographed by our crew on the job.
+          </p>
+        }
+      />
+      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
+        <li className="relative col-span-2 aspect-[3/2] overflow-hidden rounded-card md:row-span-2 md:aspect-auto">
+          <Image src={featured.src} alt={featured.alt} fill sizes="(min-width: 768px) 66vw, 100vw" className="object-cover" />
+        </li>
+        {rest.map((p, i) => (
+          <li
+            key={p.alt}
+            // An odd count leaves the last photo alone on phones; let it span the row.
+            className={`relative aspect-[3/2] overflow-hidden rounded-card ${
+              rest.length % 2 && i === rest.length - 1 ? "col-span-2 md:col-span-1" : ""
+            }`}
+          >
+            <Image
+              src={p.src}
+              alt={p.alt}
+              fill
+              sizes="(min-width: 768px) 33vw, 50vw"
+              style={{ objectPosition: p.position }}
+              className="object-cover"
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/** Two-up before/after of the same spot. Labels sit on the photos; the alt text describes each one. */
+function BeforeAfter({ service }: { service: Service }) {
+  const ba = service.beforeAfter;
+  if (!ba) return null;
+  const pair = [
+    { label: "Before", photo: ba.before, pill: "bg-white text-ink" },
+    { label: "After", photo: ba.after, pill: "bg-brand text-white" },
+  ];
+  return (
+    <section aria-labelledby="before-after-title" className="container-site flex flex-col gap-12 pt-20 lg:gap-14 lg:pt-28">
+      <SectionHeader
+        id="before-after-title"
+        eyebrow="Before & after"
+        title={ba.title}
+        aside={<p className="text-[17px] leading-7 text-muted">{ba.caption}</p>}
+      />
+      <div className="grid grid-cols-2 gap-3 md:gap-5">
+        {pair.map(({ label, photo, pill }) => (
+          <figure key={label} className="relative aspect-[4/5] overflow-hidden rounded-card md:aspect-square">
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              sizes="50vw"
+              style={{ objectPosition: photo.position }}
+              className="object-cover"
+            />
+            <figcaption
+              className={`absolute top-3 left-3 rounded-full px-3 py-1.5 text-[13px] font-bold tracking-[0.08em] uppercase md:top-5 md:left-5 ${pill}`}
+            >
+              {label}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
   );
 }

@@ -39,7 +39,14 @@ export default function ServicesPage() {
             className={`flex flex-col gap-10 lg:items-center lg:gap-20 ${i % 2 ? "lg:flex-row-reverse" : "lg:flex-row"}`}
           >
             <div className="relative aspect-[4/3.2] w-full overflow-hidden rounded-panel lg:w-[46%] lg:shrink-0">
-              <Image src={s.image} alt={s.imageAlt} fill sizes="(min-width: 1024px) 46vw, 100vw" className="object-cover" />
+              <Image
+                src={s.image}
+                alt={s.imageAlt}
+                fill
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                style={{ objectPosition: s.imagePosition }}
+                className="object-cover"
+              />
               <span className="absolute top-5 left-5 rounded-full bg-white px-3 py-1.5 text-[13px] font-bold tracking-[0.08em] text-ink uppercase">
                 {String(i + 1).padStart(2, "0")}
                 {s.badge ? ` · ${s.badge}` : ""}

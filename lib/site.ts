@@ -7,9 +7,26 @@ import mulchFence from "@/assets/images/job-mulch-fence.jpg";
 import sideYard from "@/assets/images/job-side-yard.jpg";
 import trimmingFence from "@/assets/images/job-trimming-fence.jpg";
 import curvedBed from "@/assets/images/job-curved-bed.jpg";
-import lawnMower from "@/assets/images/service-lawn-mower.jpg";
-import mulching from "@/assets/images/service-mulching.jpg";
-import hedge from "@/assets/images/service-hedge.jpg";
+import lawnStriped from "@/assets/images/job-lawn-striped-garage.jpg";
+import crewMulchTrailer from "@/assets/images/crew-mulch-trailer.jpg";
+import mulchCurb from "@/assets/images/job-mulch-curb.jpg";
+import mulchCurvedEdge from "@/assets/images/job-mulch-curved-edge.jpg";
+import mulchTreeRing from "@/assets/images/job-mulch-tree-ring.jpg";
+import mulchFenceRow from "@/assets/images/job-mulch-fence-row.jpg";
+import mulchWaterfront from "@/assets/images/job-mulch-waterfront.jpg";
+import mulchWaterfrontWalk from "@/assets/images/job-mulch-waterfront-walk.jpg";
+import mulchHostaCurve from "@/assets/images/job-mulch-hosta-curve.jpg";
+import mulchHostaSide from "@/assets/images/job-mulch-hosta-side.jpg";
+import mulchDaylilyFence from "@/assets/images/job-mulch-daylily-fence.jpg";
+import porchBefore from "@/assets/images/job-porch-bed-before.jpg";
+import porchAfter from "@/assets/images/job-porch-bed-after.jpg";
+import lawnRedDoor from "@/assets/images/job-lawn-red-door-colonial.jpg";
+import lawnStripesFront from "@/assets/images/job-lawn-stripes-front.jpg";
+import lawnStripesBackyard from "@/assets/images/job-lawn-stripes-backyard.jpg";
+import lawnCapeWalk from "@/assets/images/job-lawn-cape-walk.jpg";
+import lawnSidewalkEdge from "@/assets/images/job-lawn-sidewalk-edge.jpg";
+import lawnTreeRing from "@/assets/images/job-lawn-tree-ring.jpg";
+import cleanupHedgeWalk from "@/assets/images/job-cleanup-hedge-walk.jpg";
 import amber from "@/assets/images/avatar-amber.png";
 import houseCurb from "@/assets/images/house-curb.jpg";
 
@@ -58,6 +75,9 @@ export const heroStrip = [
   { src: trimmingFence, alt: "Crew member trimming a backyard along the fence line" },
 ] as const;
 
+/** A real job photo. `position` is the CSS object-position used when it's cropped into a tile. */
+export type Photo = { src: StaticImageData; alt: string; position?: string };
+
 export type Service = {
   slug: string;
   name: string;
@@ -68,6 +88,12 @@ export type Service = {
   metaDescription: string;
   image: StaticImageData;
   imageAlt: string;
+  /** CSS object-position for the service photo when it's cropped into cards. */
+  imagePosition?: string;
+  /** Real photos from recent jobs, shown on the service page. The first one is featured. */
+  work?: Photo[];
+  /** The same spot before and after a visit, shown side by side on the service page. */
+  beforeAfter?: { before: Photo; after: Photo; title: string; caption: string };
   included: string[];
   sections: { heading: string; body: string }[];
 };
@@ -83,8 +109,17 @@ export const services: Service[] = [
       "Consistent, professional mowing, edging, trimming and turf care for homes in Virginia Beach, Chesapeake, Norfolk and the surrounding area.",
     metaDescription:
       "Weekly and bi-weekly lawn mowing, edging, trimming and turf care across Hampton Roads, VA. Veteran-owned, licensed and insured. Free quotes in 24 hours.",
-    image: lawnMower,
-    imageAlt: "Lawn mower cutting fresh green grass",
+    image: lawnRedDoor,
+    imageAlt: "Brick colonial with red double doors, a lush freshly mowed lawn and crisp mulched shrub beds",
+    imagePosition: "45% 50%",
+    work: [
+      { src: lawnStriped, alt: "Freshly striped front lawn edged clean along the sidewalk of a brick home", position: "50% 30%" },
+      { src: lawnStripesFront, alt: "Bold mowing stripes across a front lawn between two homes", position: "50% 60%" },
+      { src: lawnStripesBackyard, alt: "Striped backyard lawn along a white vinyl fence, with a daylily bed", position: "50% 45%" },
+      { src: lawnCapeWalk, alt: "Freshly mowed corner lot with a crisply edged curving sidewalk", position: "50% 45%" },
+      { src: lawnSidewalkEdge, alt: "Front lawn mowed and edged sharp along a neighborhood sidewalk", position: "50% 60%" },
+      { src: lawnTreeRing, alt: "Mulched tree ring and neatly rounded shrubs on a freshly mowed lawn", position: "50% 55%" },
+    ],
     included: [
       "Mowing at the right height for your grass type",
       "String trimming around fences, beds and trees",
@@ -120,8 +155,26 @@ export const services: Service[] = [
       "Fresh mulch installs, clean bed edging and ongoing garden bed care that gives your Hampton Roads home instant curb appeal.",
     metaDescription:
       "Professional mulching and garden bed care in Virginia Beach, Chesapeake, Norfolk and across Hampton Roads, VA. Bed cleanup, re-edging and fresh premium mulch.",
-    image: mulching,
-    imageAlt: "Crew shoveling fresh mulch into a wheelbarrow",
+    image: mulchTreeRing,
+    imageAlt: "Fresh mulch ring around a backyard shade tree, edged cleanly into a striped lawn",
+    imagePosition: "50% 40%",
+    beforeAfter: {
+      before: { src: porchBefore, alt: "Porch bed with thin, patchy old mulch and weeds around young shrubs", position: "40% 50%" },
+      after: { src: porchAfter, alt: "The same porch bed with a fresh, even layer of dark mulch and a clean edge", position: "50% 65%" },
+      title: "The difference fresh mulch makes.",
+      caption: "A Chesapeake porch bed: thin, weedy mulch out; a fresh, even layer and a clean edge in.",
+    },
+    work: [
+      { src: mulchWaterfront, alt: "Freshly mulched hillside beds along a stamped walkway above a waterfront dock", position: "50% 62%" },
+      { src: mulchHostaCurve, alt: "Curving concrete-edged bed of hostas and shrubs, freshly mulched beside a front walk", position: "50% 62%" },
+      { src: mulchCurvedEdge, alt: "Crisp curved bed edge between fresh mulch and green lawn, with flowering shrubs" },
+      { src: mulchWaterfrontWalk, alt: "Fresh dark mulch on a sloped bed with path lights beside a stamped concrete walk", position: "50% 55%" },
+      { src: mulchDaylilyFence, alt: "Fresh mulch bed with blooming daylilies along a weathered wood fence", position: "50% 55%" },
+      { src: mulchFenceRow, alt: "Long mulched bed of young trees along a white privacy fence", position: "50% 35%" },
+      { src: crewMulchTrailer, alt: "Immaculate crew member shoveling fresh mulch from a trailer onto a paver driveway" },
+      { src: mulchCurb, alt: "Brick and stone home with fresh dark mulch beds, a stacked-stone border and a striped green lawn" },
+      { src: mulchHostaSide, alt: "Side-yard bed of hostas and hydrangeas, freshly mulched along a concrete walk", position: "50% 60%" },
+    ],
     included: [
       "Old mulch, debris and weeds cleared out",
       "Fresh, even layer of premium mulch at the right depth",
@@ -153,8 +206,9 @@ export const services: Service[] = [
       "Spring and fall cleanups across Hampton Roads: leaf removal, pruning, garden bed prep and debris hauling, tailored to your yard.",
     metaDescription:
       "Spring and fall lawn cleanups, leaf removal, pruning and debris hauling in Virginia Beach, Chesapeake, Norfolk and across Hampton Roads, VA.",
-    image: hedge,
-    imageAlt: "Hedge trimmer shaping a green hedge",
+    image: cleanupHedgeWalk,
+    imageAlt: "Squared-off hedge, pruned Japanese maple and a refreshed bed along a neighborhood sidewalk",
+    imagePosition: "50% 45%",
     included: [
       "Leaf and winter debris removal",
       "Pruning shrubs and ornamental grasses",
@@ -184,9 +238,9 @@ export const services: Service[] = [
 ];
 
 export const gallery = [
-  { src: frontLawn, alt: "Freshly mowed and edged front lawn of a brick home", caption: "Weekly mow & edge" },
-  { src: mulchFence, alt: "Fresh dark mulch bed curving along a wooden fence line", caption: "Fresh mulch along the fence line" },
-  { src: sideYard, alt: "Neatly shaped shrubs and clean beds along a side yard path", caption: "Shrub shaping & bed cleanup" },
+  { src: lawnStriped, alt: "Freshly striped front lawn edged clean along the sidewalk of a brick home", caption: "Weekly mow & crisp edges" },
+  { src: mulchWaterfront, alt: "Freshly mulched hillside beds along a stamped walkway above a waterfront dock", caption: "Waterfront beds, fresh mulch" },
+  { src: mulchHostaCurve, alt: "Curving concrete-edged bed of hostas and shrubs, freshly mulched beside a front walk", caption: "Garden bed refresh" },
   { src: trimmingFence, alt: "Crew member string trimming a backyard beside a fence", caption: "String trimming, crew on site" },
 ] as const;
 

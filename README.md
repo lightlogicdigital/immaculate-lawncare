@@ -65,6 +65,11 @@ site it shows the visitor a “please call” message instead of silently droppi
 ## Content to confirm with Billy before launch
 
 - FAQ answers 2–6 in `lib/site.ts` were drafted from statements elsewhere on the old site.
-- Service cards and service pages use stock photos; the Recent Work gallery, About section and CTA use the
-  real job photos from the old site. Swap in more real photos as they're available (`assets/images/`).
+- Every service and gallery photo is a real job photo from Billy. On each service in `lib/site.ts`, `work`
+  feeds the page's "Recent work" grid (first photo featured; 6 or 9 photos fill the grid evenly) and
+  `beforeAfter` adds a before/after pair; `position` tunes each crop. `job-mulch-curb`, `-curved-edge` and
+  `crew-mulch-trailer` are ~810×443 crops of Facebook screenshots, so ask for originals if they're used large.
+- Job photos show customers' homes. New ones must be re-saved through an image tool (several of Billy's
+  phone photos carried GPS coordinates, and some have the street address stamped on them), with house
+  numbers, address stamps, security-company signs and personal flags cropped or patched out.
 - Review quotes are copied verbatim from the old site.

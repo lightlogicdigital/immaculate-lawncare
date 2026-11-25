@@ -113,6 +113,7 @@ export function ServicesGrid({ withHeader = true }: { withHeader?: boolean }) {
                   alt={s.imageAlt}
                   fill
                   sizes="(min-width: 768px) 33vw, 100vw"
+                  style={{ objectPosition: s.imagePosition }}
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 <span className="absolute top-[18px] left-[18px] rounded-full bg-white px-3 py-1.5 text-[13px] font-bold tracking-[0.08em] text-ink uppercase">
